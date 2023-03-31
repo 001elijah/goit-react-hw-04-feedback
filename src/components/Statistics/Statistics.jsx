@@ -1,27 +1,20 @@
 import PropTypes from "prop-types";
-import shortid from "shortid";
+
 
 export const Statistics = (props) => {
-    return Object.entries(props).map(e => {
-        const label = e[0];
-        const number = e[1];
+    return (Object.entries(props).map(([label, data]) => {
         return (
-            <>
-                <li key={shortid.generate()}>
+                <li>
                     <span>
-                          {label === 'good' ? 'Good: ' :
-                           label === 'neutral' ? 'Neutral: ' :
-                           label === 'bad' ? 'Bad: ' :
-                           label === 'total' ? 'Total: ' :
-                           label === 'positiveFeedback' ? 'Positive feedback: ' : 'undefined data'}
-                    </span>
-                    <span>
-                           {number}{label === 'positiveFeedback' && '%'}
+                          {label === 'good' ? `Good: ${data}` :
+                           label === 'neutral' ? `Neutral: ${data}` :
+                           label === 'bad' ? `Bad: ${data}` :
+                           label === 'total' ? `Total: ${data}` :
+                           label === 'positiveFeedback' ? `Positive feedback: ${data}%` : 'undefined data'}
                     </span>
                 </li>
-            </>
         );
-    });
+    }));
 };
 
 Statistics.propTypes = {
